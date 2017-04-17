@@ -27,7 +27,7 @@ User Stories
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/Nams2/Twitter/blob/master/TwitterGIF.gif' title='Twitter Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/Nams2/Twitter/blob/master/TwitterAppGIF.gif' title='Twitter Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
