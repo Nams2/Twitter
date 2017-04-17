@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BDBOAuth1Manager
 
 class LoginViewController: UIViewController {
 
@@ -22,6 +23,18 @@ class LoginViewController: UIViewController {
     }
     
 
+    @IBAction func onLoginButton(_ sender: Any) {
+        
+        let client = TwitterClient.sharedInstance
+        
+        client?.login(success: {
+            // on succesful login, segue to next view controller
+            print("I;ve loggged in successfully")
+            self.performSegue(withIdentifier: "loginSegue", sender: nil)
+        }, failure: { (error: Error) in
+            print(error.localizedDescription)
+        })        
+    }
     /*
     // MARK: - Navigation
 

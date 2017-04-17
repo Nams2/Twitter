@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BDBOAuth1Manager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        UINavigationBar.appearance().barTintColor = UIColor(red:0.00, green:0.82, blue:1.00, alpha:1.0)
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        
+        if User.currentUser != nil {
+            print("There is a current user")
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let tweetViewController = storyBoard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+            window?.rootViewController = tweetViewController
+        }
+        else {
+            print("There is no current user")
+            //TwitterClient.sharedInstance?.handleOpenUrl(url: url)
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil, queue: OperationQueue.main) { (Notification) in
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let viewControllerMain = storyBoard.instantiateInitialViewController()
+            self.window?.rootViewController = viewControllerMain
+        }
+        
         return true
     }
 
@@ -40,7 +63,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        print("url in appDelegate is \(url.description)")
+        
+        TwitterClient.sharedInstance?.handleOpenUrl(url: url)
+        return true
+    }
 
 }
 
