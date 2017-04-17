@@ -105,7 +105,6 @@ class TweetDetailViewController: UIViewController {
                                             print("Reply sent")
                                             
                                             self?.delegate?.tweetDetailViewController!(tweetDetailViewController: self!, tweetUpadted: responseTweet)
-                                            self?.dismiss(animated: true, completion: nil)
                                         }, failure: { (error: Error) in
                                             print("Error in replying in Detail VC \(error.localizedDescription)")
                                         })
@@ -113,7 +112,7 @@ class TweetDetailViewController: UIViewController {
         })
         
         alertController?.addAction(action)
-        self.present(alertController!,animated: true,completion: nil)
+        present(alertController!,animated: true,completion: nil)
         
     }
     
