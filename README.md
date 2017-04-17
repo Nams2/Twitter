@@ -4,7 +4,7 @@ Twitter App making use of Twitter apis
 
 Submitted by: Namrata Mehta
 
-Time spent: 14 hours spent in total
+Time spent: 17 hours spent in total
 
 User Stories
 
